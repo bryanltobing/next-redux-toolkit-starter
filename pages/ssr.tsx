@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
 import { useGetPostsQuery } from "../hook";
+import { wrapper } from "../store";
+import { postApi } from "../postApi";
 
 const Home: NextPage = () => {
   const { data: posts } = useGetPostsQuery();
@@ -57,3 +59,14 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    store.dispatch(postApi.endpoints.getPosts.initiate());
+
+    await Promise.all(postApi.util.getRunningOperationPromises());
+    return {
+      props: {},
+    };
+  }
+);

@@ -1,15 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 
+import { postApi } from "./postApi";
+
 export const makeStore = () =>
   configureStore({
     reducer: {
-      // reducer goes here
+      [postApi.reducerPath]: postApi.reducer,
     },
-    middleware: (gDM) =>
-      gDM().concat([
-        // middleware goes here
-      ]),
+    middleware: (gDM) => gDM().concat([postApi.middleware]),
   });
 
 export type AppStore = ReturnType<typeof makeStore>;
