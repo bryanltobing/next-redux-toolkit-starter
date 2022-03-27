@@ -3,9 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
-import { useGetPostsQuery } from "../hook";
-import { wrapper } from "../store";
-import { postApi } from "../postApi";
+import { useGetPostsQuery } from "../hooks";
+import { wrapper } from "../redux/store";
+import { postApi } from "../redux/postApi";
 
 const Home: NextPage = () => {
   const { data: posts } = useGetPostsQuery();

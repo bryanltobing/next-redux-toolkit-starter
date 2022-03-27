@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
-import { useGetPostsQuery } from "../hook";
+import { useGetPostsQuery } from "../hooks";
 
 const Home: NextPage = () => {
   const { data: posts } = useGetPostsQuery();
